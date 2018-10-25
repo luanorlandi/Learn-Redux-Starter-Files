@@ -5,12 +5,12 @@ export const increment = (index) => {
   };
 };
 
-export const addComment = (postId, author, commment) => {
+export const addComment = (postId, author, comment) => {
   return {
     type: 'ADD_COMMENT',
     postId,
     author,
-    commment
+    comment
   };
 };
 

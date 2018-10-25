@@ -4,16 +4,24 @@ class Comments extends React.Component {
   constructor(props) {
     super(props);
 
+    this.renderComment = this.renderComment.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   renderComment(comment, i) {
+    const { postId } = this.props;
+
     return (
       <div className="comment" key={i}>
         <p>
           <strong>{comment.user}</strong>
           {comment.text}
-          <button className="remove-comment">&times;</button>
+          <button
+            className="remove-comment"
+            onClick={this.props.removeComment.bind(null, postId, i)}
+          >
+            &times;
+          </button>
         </p>
       </div>
     );
@@ -26,6 +34,7 @@ class Comments extends React.Component {
     const comment = this.refs.comment.value;
 
     addComment(postId, author, comment);
+    this.refs.commentForm.reset();
   }
 
   render() {
